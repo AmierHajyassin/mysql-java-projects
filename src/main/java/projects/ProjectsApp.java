@@ -64,7 +64,7 @@ public class ProjectsApp {
 		project.setDifficulty(difficulty);
 		project.setNotes(notes);
 
-		Project dbProject = projectService.addProject(project); // add projectID from mySQL
+		Project dbProject = projectService.addProject(project); 
 
 		System.out.println("You have successfully created project: " + dbProject);
 		return;
