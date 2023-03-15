@@ -5,14 +5,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale.Category;
 import java.util.Objects;
 import java.util.Optional;
-
+import projects.entity.Category;
 import projects.entity.Material;
 import projects.entity.Project;
 import projects.entity.Step;
@@ -70,8 +67,8 @@ public class ProjectDao extends DaoBase {
 					List<Project> projects = new LinkedList<>();
 
 					while (rs.next()) {
-						projects.add(extract(rs, Project.class)); 
-																	
+						projects.add(extract(rs, Project.class));
+
 					}
 					return projects;
 				}
@@ -85,7 +82,7 @@ public class ProjectDao extends DaoBase {
 
 	}
 
-	public Optional <Project> fetchProjectById(Integer projectId) {
+	public Optional<Project> fetchProjectById(Integer projectId) {
 
 		String sql = "SELECT * FROM " + PROJECT_TABLE + " WHERE project_id = ?";
 		try (Connection conn = DbConnection.getConnection()) {
@@ -106,14 +103,19 @@ public class ProjectDao extends DaoBase {
 				if (Objects.nonNull(project)) {
 					project.getMaterials().addAll(fetchMaterialsForProject(conn, projectId));
 					project.getSteps().addAll(fetchStepsForProject(conn, projectId));
-					project.getCategories().addAll(fetchCategoriesForProject(conn, projectId)); 
-					//I dont understand the problem. I tried to do what it asked but it still didnt work 
+					project.getCategories().addAll(fetchCategoriesForProject(conn, projectId));
+
+					/*
+					 * addAll(fetchCategoriesForProject did not work because I had the wrong import.
+					 * The import that i was using was import java.util.Locale.Category when i
+					 * should have used (import projects.entity.Category)
+					 *
+					 */
 
 				}
-				//commitTransaction(conn);
+				// commitTransaction(conn);
 				return Optional.ofNullable(project);
-			} 
-			catch (Exception e) {
+			} catch (Exception e) {
 				rollbackTransaction(conn);
 				throw new DbException(e);
 			}
