@@ -1,3 +1,4 @@
+use projects;
 DROP TABLE IF EXISTS project_category;
 DROP TABLE IF EXISTS category;
 DROP TABLE IF EXISTS step;
@@ -48,3 +49,40 @@ CREATE TABLE project_category(
     FOREIGN KEY(category_id) REFERENCES category (category_id) ON DELETE CASCADE,
     UNIQUE KEY(project_id, category_id)
 );
+
+
+insert into project (project_id, project_name, estimated_hours, actual_hours, difficulty, notes) values(1, 'Hang New Door', 5, 4, 4, 'The door is too old, time for a new one!');
+
+insert into material (material_id, project_id, material_name, num_required, cost) values (1,1, 'door hinges', 2, 10);
+insert into material (material_id, project_id, material_name, num_required, cost) values (2,1, 'screws', 12, 5);
+insert into material (material_id, project_id, material_name, num_required, cost) values (3,1, 'door', 1, 50);
+
+insert into step (step_id, project_id, step_text, step_order) values (1,1,'Make sure the door is the right size.', 1);
+insert into step (step_id, project_id, step_text, step_order) values (2,1,'Remove old door and screws.', 2);
+insert into step (step_id, project_id, step_text, step_order) values (3,1,'Clean the door molding.', 3);
+insert into step (step_id, project_id, step_text, step_order) values (4,1,'Hang new door.', 4);
+
+insert into category (category_id, category_name) values (1, 'New Door');
+
+insert into project_category (project_id, category_id) values (1, 1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
