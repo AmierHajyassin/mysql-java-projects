@@ -19,9 +19,6 @@ public class ProjectService {
 	public List<Project> fetchAllProjects() {
 		return projectDao.fetchAllProjects();
 
-//					.stream()
-//					.sorted((p1, p2) -> p1.getProjectId() - p2.getProjectId())
-//					.collect(Collectors.toList());
 
 	}
 
@@ -32,7 +29,7 @@ public class ProjectService {
 
 	public void modifyProjectDetails(Project project) {
 		if (!projectDao.modifyProjectDetails(project)) {
-			throw new DbException("Project with ID= " + project.getProjectId() + "does not exits!");
+			throw new DbException("Project with ID=  " + project.getProjectId() + "does not exits!");
 		}
 
 	}

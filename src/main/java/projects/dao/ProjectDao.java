@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+
 import projects.entity.Category;
 import projects.entity.Material;
 import projects.entity.Project;
@@ -23,6 +24,8 @@ public class ProjectDao extends DaoBase {
 	private static final String PROJECT_CATEGORY_TABLE = "project_category";
 	private static final String STEP_TABLE = "step";
 
+	
+	
 	public Project insertProject(Project project) {
 		// @formatter: off
 		String sql = "" + "INSERT INTO " + PROJECT_TABLE + " "
@@ -186,13 +189,14 @@ public class ProjectDao extends DaoBase {
 		//@formatter:off
 		
 		String sql = ""
-				+ "UPDATE " + PROJECT_TABLE + "SET "
+				+ "UPDATE " + PROJECT_TABLE + " SET "// the sapcing was wrong on SET. 
 				+ "project_name = ?, "
 				+ "estimated_hours = ?, " 
 				+ "actual_hours = ?, "
 				+ "difficulty = ?, "
 				+ "notes = ? " // , isnt needed; 
 				+ "WHERE project_id = ? "; // make sure the spacing is correct. 
+		
 		//@formatter:on
 
 		try (Connection conn = DbConnection.getConnection()) {

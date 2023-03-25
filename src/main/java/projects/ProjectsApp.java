@@ -10,6 +10,14 @@ import projects.exception.DbException;
 import projects.service.ProjectService;
 
 public class ProjectsApp {
+	
+	
+	/*
+	 * In the projects_schema 
+	 * Step_order was TEXT when it should have been INT
+	 * that was one of many reasons why the code didn't work 
+	 * 
+	 */
 
 	private Scanner scanner = new Scanner(System.in);
 	private ProjectService projectService = new ProjectService();
@@ -129,11 +137,11 @@ public class ProjectsApp {
 	}
 
 	private void createProject() {
-		String projectName = getStringInput("Enter the project name");
-		BigDecimal estimatedHours = getDecimalInput("Enter the estimated hours");
-		BigDecimal actualHours = getDecimalInput("Enter the actual hours");
-		Integer difficulty = getIntInput("Enter the project difficulty (1-5)");
-		String notes = getStringInput("Enter the project notes");
+		String projectName = getStringInput("Enter the project name ");
+		BigDecimal estimatedHours = getDecimalInput("Enter the estimated hours ");
+		BigDecimal actualHours = getDecimalInput("Enter the actual hours ");
+		Integer difficulty = getIntInput("Enter the project difficulty (1-5) ");
+		String notes = getStringInput("Enter the project notes ");
 
 		Project project = new Project();
 
